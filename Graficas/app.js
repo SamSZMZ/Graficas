@@ -76,3 +76,4 @@ var InitDemo = function () {
 		console.error('ERROR validating program!', gl.getProgramInfoLog(program));
 		return;
 	}
+}

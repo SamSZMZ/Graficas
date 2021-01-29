@@ -1,0 +1,21 @@
+newmtl Sphere material_fa85439b-5960-4276-b444-62120b01f474
+Kd 0.800 0.800 0.800
+d 1.000
+newmtl Sphere material 1_6decd6e5-4acf-4230-8600-cdbc96966a3a
+Kd 0.800 0.800 0.800
+d 1.000
+newmtl Sphere material 2_582a5bda-2996-40bb-8535-039b41b23c0c
+Kd 0.800 0.800 0.800
+d 1.000
+newmtl Sphere material 3_3927806a-5c9d-4713-adee-13fb00d867ea
+Kd 0.800 0.800 0.800
+d 1.000
+newmtl Sphere material 4_db5f3282-d653-4189-b0fc-d9c6bb93e4fe
+Kd 0.800 0.800 0.800
+d 1.000
+newmtl Cone material 1_a0f7da33-2ea4-4c63-9c70-0454de520588
+Kd 0.800 0.800 0.800
+d 1.000
+newmtl Cone material_ae8dca2a-ae91-475c-a159-acad19c8f04a
+Kd 0.800 0.800 0.800
+d 1.000

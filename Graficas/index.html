@@ -1,0 +1,108 @@
+<!-- Following this tutorial: https://www.youtube.com/playlist?list=PLRtjMdoYXLf6mvjCmrltvsD0j12ZQDMfE-->
+<html>
+    <meta charset="utf-8">
+    <head>
+        <title>Three.js Aquarium</title>
+        <style>
+            body {margin: 0; }
+            canvas {width: 100%; height: 100%;}
+        </style>
+    </head>
+
+
+    <body>
+        <script src="js/three.js"></script> <!-- We will use Three.js for the project -->
+        <script src="js/OrbitControls.js"></script> <!-- This is used to control camera with mouse -->
+        <script src="js/OBJLoader.js"></script> <!-- Used to load the models we made in vectary.com -->
+        <script src="js/MTLLoader.js"></script> <!-- Used to load textures (gotten from vectary.com) -->
+        
+
+        <script>
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); //FOV, ratio, near clip, far clip
+
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0xffffff, 1);
+            document.body.appendChild(renderer.domElement);
+
+            //Resizes project along with window
+            window.addEventListener('resize', function()
+            {
+                renderer.setSize(window.innerWidth , window.innerHeight);
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            });
+
+            camera.position.z = 250;
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement); //Adds controls to camera
+
+            //Hemisphere light so that we can see the models, it's a light source from the top
+            var hemLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1); //sky color, ground color, intensity
+            scene.add(hemLight);
+
+
+            //Start loading all models
+            var mtlLoader = new THREE.MTLLoader();
+            mtlLoader.load('models/submarine/Submarine.mtl', function(materials){
+                materials.preload();
+                var submarine = new THREE.OBJLoader();
+                submarine.setMaterials(materials);
+                submarine.load('models/submarine/Submarine.obj', function(object){
+
+                    scene.add(object);
+                });
+
+            });
+
+
+
+            var fish1 = new THREE.OBJLoader();
+            fish1.load('models/fish1/fish1.obj', function(object){
+                object.scale.set(0.5,0.5,0.5);
+                object.position.y = -100;
+                scene.add(object);
+            });
+
+            var fish2 = new THREE.OBJLoader();
+            fish2.load('models/fish2/fish2.obj', function(object){
+                object.scale.set(0.5,0.5,0.5);
+                object.position.x = -200;
+                scene.add(object);
+            });
+
+            var urchin = new THREE.OBJLoader();
+            fish2.load('models/urchin/urchin.obj', function(object){
+                object.scale.set(0.5,0.5,0.5);
+                object.position.x = 200;
+                scene.add(object);
+            });
+
+
+            //End loading all models
+
+
+
+
+            var update = function () //What is updated every frame
+            {
+
+            };
+
+            var render = function() //What is being drawn
+            {
+                renderer.render(scene, camera);
+            };
+
+            var Loop = function() //Infinite update -> render
+            {
+                requestAnimationFrame(Loop); //Makes sure it runs every frame
+                update();
+                render();
+            };
+
+            Loop();
+        </script>
+    </body>
+</html>
