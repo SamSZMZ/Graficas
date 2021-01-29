@@ -57,6 +57,14 @@
             });
 
 
+            
+            var turtle = new THREE.OBJLoader();
+            turtle.load('models/turtle/turtle.obj', function(object){
+                object.scale.set(0.5,0.5,0.5);
+                object.position.y = -100;
+                object.position.x = 150;
+                scene.add(object);
+            });
 
             var fish1 = new THREE.OBJLoader();
             fish1.load('models/fish1/fish1.obj', function(object){
