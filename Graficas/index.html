@@ -34,7 +34,8 @@
                 camera.updateProjectionMatrix();
             });
 
-            camera.position.z = 250;
+            camera.position.z = 500;
+            camera.position.y = 300;
 
             controls = new THREE.OrbitControls(camera, renderer.domElement); //Adds controls to camera
 
@@ -44,48 +45,142 @@
 
 
             //Start loading all models
-            var mtlLoader = new THREE.MTLLoader();
-            mtlLoader.load('models/submarine/Submarine.mtl', function(materials){
+            var mtlLoaderTank = new THREE.MTLLoader();
+            mtlLoaderTank.load('models/tank/tank.mtl', function(materials){
+                materials.preload();
+                var tank = new THREE.OBJLoader();
+                tank.setMaterials(materials);
+
+                    tank.load('models/tank/tank.obj', function(object){
+                        object.scale.set(3,3,3);
+                        scene.add(object);
+                    });
+                });
+
+            
+            const material = new THREE.MeshPhongMaterial({
+                color: 0x60f0ec,
+                opacity: 0.2,
+                transparent: true,
+            });
+            
+            const geometry = new THREE.BoxGeometry(600, 300, 300);
+            const glass = new THREE.Mesh(geometry, material);
+            glass.position.y = 159;
+            scene.add(glass);
+
+
+
+            var mtlLoaderSub = new THREE.MTLLoader();
+            mtlLoaderSub.load('models/submarine/Submarine.mtl', function(materials){
                 materials.preload();
                 var submarine = new THREE.OBJLoader();
                 submarine.setMaterials(materials);
                 submarine.load('models/submarine/Submarine.obj', function(object){
-
+                    object.scale.set(.8,.8,.8);
+                    object.position.y = 150;
+                    object.position.x = 100;
                     scene.add(object);
                 });
 
             });
 
 
-            
-            var turtle = new THREE.OBJLoader();
-            turtle.load('models/turtle/turtle.obj', function(object){
-                object.scale.set(0.5,0.5,0.5);
-                object.position.y = -100;
-                object.position.x = 150;
-                scene.add(object);
+            var mtlLoaderTurtle = new THREE.MTLLoader();
+            mtlLoaderTurtle.load('models/turtle/turtle.mtl', function(materials){
+                materials.preload();
+                var turtle = new THREE.OBJLoader();
+                turtle.setMaterials(materials);
+                turtle.load('models/turtle/turtle.obj', function(object){
+                    object.rotation.z = Math.PI/6;
+                    object.rotation.y = Math.PI/1.5;
+                    object.scale.set(0.4,0.4,0.4);
+                    object.position.y = 70;
+                    object.position.x = 150;
+                    object.position.z = 50;
+                    scene.add(object);
+                });
             });
 
-            var fish1 = new THREE.OBJLoader();
-            fish1.load('models/fish1/fish1.obj', function(object){
-                object.scale.set(0.5,0.5,0.5);
-                object.position.y = -100;
-                scene.add(object);
+
+
+            var mtlLoaderFish1 = new THREE.MTLLoader();
+            mtlLoaderFish1.load('models/fish1/fish1.mtl', function(materials){
+                materials.preload();
+                var fish1 = new THREE.OBJLoader();
+                fish1.setMaterials(materials);
+
+                const positions = [{x: -50, y: 200, z:50}, {x: -80, y: 200, z:0}, {x: -50, y: 200, z:-50}, {x: -65, y: 230, z:-25}, {x: -65, y: 230, z:25}];
+                positions.forEach(pos =>
+                fish1.load('models/fish1/fish1.obj', function(object){
+                    object.scale.set(0.2,0.2,0.2);
+                    object.position.x = pos.x;
+                    object.position.y = pos.y;
+                    object.position.z = pos.z;
+                    object.rotation.y = Math.PI/4;
+                    object.rotation.z = Math.PI/12;
+
+
+                    scene.add(object);
+                }));
+
+
+
             });
 
-            var fish2 = new THREE.OBJLoader();
-            fish2.load('models/fish2/fish2.obj', function(object){
-                object.scale.set(0.5,0.5,0.5);
-                object.position.x = -200;
-                scene.add(object);
+
+            var mtlLoaderFish2 = new THREE.MTLLoader();
+            mtlLoaderFish2.load('models/fish2/fish2.mtl', function(materials){
+                materials.preload();
+                var fish2 = new THREE.OBJLoader();
+                fish2.setMaterials(materials);
+                fish2.load('models/fish2/fish2.obj', function(object){
+                    object.scale.set(0.5,0.5,0.5);
+                    object.position.x = -200;
+                    object.position.y = 100;
+                    scene.add(object);
+                });
             });
 
-            var urchin = new THREE.OBJLoader();
-            fish2.load('models/urchin/urchin.obj', function(object){
-                object.scale.set(0.5,0.5,0.5);
-                object.position.x = 200;
-                scene.add(object);
+
+            var mtlLoaderUrchin = new THREE.MTLLoader();
+            mtlLoaderUrchin.load('models/urchin/urchin.mtl', function(materials){
+                materials.preload();
+                var urchin = new THREE.OBJLoader();
+                urchin.setMaterials(materials);
+                urchin.load('models/urchin/urchin.obj', function(object){
+                    object.scale.set(0.2,0.2,0.2);
+                    object.position.x = 200;
+                    object.position.y = 6;
+                    scene.add(object);
+                });
+                urchin.load('models/urchin/urchin.obj', function(object){
+                    object.scale.set(0.2,0.2,0.2);
+                    object.position.x = -50;
+                    object.position.y = 6;
+                    object.position.z = -100;
+
+                    scene.add(object);
+                });
             });
+
+            var mtlLoaderRay = new THREE.MTLLoader();
+            mtlLoaderRay.load('models/stingray/stingray.mtl', function(materials){
+                materials.preload();
+                var stingray = new THREE.OBJLoader();
+                stingray.setMaterials(materials);
+                stingray.load('models/stingray/stingray.obj', function(object){
+                    object.scale.set(0.8,0.8,0.8);
+                    object.position.x = -30;
+                    object.position.y = 50;
+                    object.rotation.z = -Math.PI/12;
+                    object.rotation.y = -Math.PI/2;
+                    object.rotation.x = Math.PI;
+
+                    scene.add(object);
+                });
+            });
+
 
 
             //End loading all models

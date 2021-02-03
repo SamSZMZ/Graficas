@@ -1,0 +1,48 @@
+newmtl Box material 2_f00d4474-0e89-4743-89f4-672eba2e4287
+Kd 0.741 0.690 0.459
+d 1.000
+newmtl Box material 3_ae375d6e-65ca-4ceb-af42-1fa0b5becd93
+Kd 0.278 0.278 0.278
+d 1.000
+newmtl Box material 1_3a4198df-b860-486c-bfe8-6f35d7a14580
+Kd 0.278 0.278 0.278
+d 1.000
+newmtl mat9 2_4d4b9032-dc82-4068-86cd-baadac06d704
+Kd 0.550 0.760 0.290
+d 1.000
+newmtl mat11 2_01683d13-e627-4c8c-b8c1-18b8b59355c9
+Kd 0.000 0.590 0.530
+d 1.000
+newmtl mat9 1_bc756ae4-1e34-46fe-9c23-f33ff6578444
+Kd 0.550 0.760 0.290
+d 1.000
+newmtl mat11 1_4f8998df-1263-467f-bcb8-2569863da076
+Kd 0.000 0.590 0.530
+d 1.000
+newmtl mat9_6ad5566c-67cd-45bb-a16e-b06dd7da44f8
+Kd 0.550 0.760 0.290
+d 1.000
+newmtl mat11_0be879a7-ae36-4713-9ed2-7bdde027e371
+Kd 0.000 0.590 0.530
+d 1.000
+newmtl Material 3_23cc7725-b61c-4793-b255-43143915998a
+Kd 0.243 0.247 0.318
+d 1.000
+newmtl Material 2_c449d4a1-4b4e-4866-9139-50014a950fdc
+Kd 0.243 0.247 0.318
+d 1.000
+newmtl Material 1_dd36590f-907d-423b-b9f9-7b0a853734c9
+Kd 0.243 0.247 0.318
+d 1.000
+newmtl _modelmat8_485e1c39-5b1e-4a75-b0b9-33a86f9265f1
+Kd 0.992 0.345 0.294
+d 1.000
+newmtl _modelmat14_3cb56b27-85ea-40b2-b5b2-20be37144c11
+Kd 1.000 0.463 0.298
+d 1.000
+newmtl _modelmat1_07e2b8a5-b2d6-41fa-8eaf-8816a6471f44
+Kd 0.039 0.518 0.674
+d 1.000
+newmtl _modelmat0_18d46e23-ac7d-4d45-84a7-b40976fe2aaf
+Kd 0.106 0.180 0.729
+d 1.000

@@ -1,5 +1,5 @@
 # Vectary OBJ Export units=mm
-mtllib Project Name.mtl
+mtllib Erizo .mtl
 o 000_Cone_12
 g Cone_12
 usemtl Cone material 12_33f08e92-10bd-490c-9ade-aed805d12749
