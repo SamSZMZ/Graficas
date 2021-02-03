@@ -1,18 +1,20 @@
 newmtl Cylinder material_6b488a62-5eb7-433a-8750-807ba2e7e70e
-Kd 0.800 0.800 0.800
+Kd 0.635 0.157 0.165
 d 1.000
 newmtl Box material 1_723c81fa-b34f-445f-8bdc-b1b1d312b690
-Kd 0.800 0.800 0.800
+Kd 0.635 0.157 0.165
 d 1.000
 newmtl Box material_b6e5e203-1ebf-4684-ac38-bb7a5923408c
-Kd 0.800 0.800 0.800
+Kd 0.635 0.157 0.165
 d 1.000
 newmtl Sphere material_86bf30c6-118b-4464-8606-d46c2efeeba7
-Kd 0.800 0.800 0.800
+Kd 0.812 0.427 0.435
 d 1.000
+newmtl Sphere material 2_8dfd3aa4-dcca-4b82-8893-fc6e8a98a7b7
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd images.jpg
 newmtl Sphere material 1_55f834e8-c830-41b0-92f9-6637010b0d9b
-Kd 0.800 0.800 0.800
+Kd 1.000 1.000 1.000
 d 1.000
-newmtl Sphere material 2_6805040c-96c5-4ebf-831d-63ba86043ecd
-Kd 0.800 0.800 0.800
-d 1.000
+map_Kd images_2.jpg
