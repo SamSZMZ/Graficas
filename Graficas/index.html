@@ -23,7 +23,7 @@
 
             var renderer = new THREE.WebGLRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(0xffffff, 1);
+            renderer.setClearColor(0xEAF6F8, 1);
             document.body.appendChild(renderer.domElement);
 
             //Resizes project along with window
@@ -40,11 +40,31 @@
             controls = new THREE.OrbitControls(camera, renderer.domElement); //Adds controls to camera
 
             //Hemisphere light so that we can see the models, it's a light source from the top
-            var hemLight = new THREE.HemisphereLight(0xffffff, 0x000000, 1); //sky color, ground color, intensity
+            var hemLight = new THREE.HemisphereLight(0xffffff, 0x000000, .8); //sky color, ground color, intensity
             scene.add(hemLight);
+
+            //Point light for the tank's bulb
+            const pointLight = new THREE.PointLight( 0xf8e344, .9, 1000 );
+            pointLight.position.set( 0, 295, 0 );
+            scene.add( pointLight );
 
 
             //Start loading all models
+
+            var mtlLoaderTable = new THREE.MTLLoader();
+            mtlLoaderTable.load('models/table/table.mtl', function(materials){
+                materials.preload();
+                var table = new THREE.OBJLoader();
+                table.setMaterials(materials);
+
+                    table.load('models/table/table.obj', function(object){
+                        object.scale.set(3,3,3);
+                        object.position.y = -360;
+                        scene.add(object);
+                    });
+                });
+
+
             var mtlLoaderTank = new THREE.MTLLoader();
             mtlLoaderTank.load('models/tank/tank.mtl', function(materials){
                 materials.preload();
@@ -58,16 +78,22 @@
                 });
 
             
-            const material = new THREE.MeshPhongMaterial({
+            const material = new THREE.MeshPhongMaterial({ //Tank glass
                 color: 0x60f0ec,
                 opacity: 0.2,
                 transparent: true,
             });
-            
             const geometry = new THREE.BoxGeometry(600, 300, 300);
             const glass = new THREE.Mesh(geometry, material);
             glass.position.y = 159;
             scene.add(glass);
+
+
+            const cylGeometry = new THREE.CylinderGeometry( 10, 10, 2, 32 ); //Tank light
+            const cylMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+            const cylinder = new THREE.Mesh( cylGeometry, cylMaterial );
+            cylinder.position.set(0,307,0);
+            scene.add( cylinder );
 
 
 
@@ -77,10 +103,11 @@
                 var submarine = new THREE.OBJLoader();
                 submarine.setMaterials(materials);
                 submarine.load('models/submarine/Submarine.obj', function(object){
-                    object.scale.set(.8,.8,.8);
+                    object.scale.set(.6,.6,.6);
                     object.position.y = 150;
                     object.position.x = 100;
                     scene.add(object);
+                    sub = object;
                 });
 
             });
@@ -187,6 +214,25 @@
 
 
 
+            //Move submarine
+            var rotateSpeed = Math.PI / 60;
+            var speed = 2;
+            document.addEventListener("keydown", onDocumentKeyDown, false);
+            function onDocumentKeyDown(event) {
+                var keyCode = event.which;
+                if (keyCode == 87) {
+                    sub.rotation.z += -rotateSpeed;
+                } else if (keyCode == 83) {
+                    sub.rotation.z += rotateSpeed;
+                } else if (keyCode == 65) {
+                    sub.rotation.y += rotateSpeed;
+                } else if (keyCode == 68) {
+                    sub.rotation.y -= rotateSpeed;
+                } else if (keyCode == 32) {
+                    sub.translateX(-speed);
+                }
+            };
+
 
             var update = function () //What is updated every frame
             {
@@ -195,6 +241,7 @@
 
             var render = function() //What is being drawn
             {
+
                 renderer.render(scene, camera);
             };
 
